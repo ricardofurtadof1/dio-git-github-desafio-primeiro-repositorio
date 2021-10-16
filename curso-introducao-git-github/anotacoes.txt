@@ -1,0 +1,263 @@
+git
+
+cmd - comandos básicos
+dir - listar diretorios
+cd / - raiz
+cd pasta - vai pra pasta
+cd .. - sobe um nivel
+del pasta - deleta arquivos da pasta
+rmdir pasta - deleta pasta
+echo oi > hello.txt - escreve hello no arquivo txt, se nao existir ele cria
+
+gitbash
+da para clicar na pasta com botao direito e iniciar gitbash diretamente nesta pasta
+
+objetos do git
+blobs - guardam metadados do arquivo (tem o sha1 - encriptação - do arquivo)
+tree - armazenam blobs ou outrar arvores
+
+CHAVE SSH 
+
+no gitbash : $ ssh-keygen -t ed25519 -C ricardofurtadof1@gmail.com
+
+resposta do terminal: $ ssh-keygen -t ed25519 -C ricardofurtadof1@gmail.com
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/c/Users/Mariah/.ssh/id_ed25519):
+
+clicar em ENTER
+
+Created directory '/c/Users/Mariah/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Users/Mariah/.ssh/id_ed25519
+Your public key has been saved in /c/Users/Mariah/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:XcXB/LhbmsZYEkSXD6Z8Pm9+AE3hPCutfAOEjYLXmPc ricardofurtadof1@gmail.com
+The key's randomart image is:
++--[ED25519 256]--+
+|           ..+=+ |
+|       . + +.=O  |
+|      . = =o+=+= |
+|       . + +=.+oo|
+|        S . E=o. |
+|           ..+* .|
+|            o=oO |
+|            ..*.+|
+|             . oo|
++----[SHA256]-----+
+
+
+$ cd /c/Users/Mariah/.ssh/
+
+Mariah@SAMSUNG-LAP MINGW64 ~/.ssh
+$ ls
+id_ed25519  id_ed25519.pub
+
+####Visualizar conteudo do arquivo#####
+####Essa é a chave publica pra configurar o github####
+Mariah@SAMSUNG-LAP MINGW64 ~/.ssh
+$ cat id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH6r/ij+550xPa17xPBuFWr+e7H/TwOP3D2lYyICF8O/ ricardofurtadof1@gmail.com
+
+###acionar ssh agent e incluir chave privada###
+$ eval $(ssh-agent -s)
+Agent pid 1402
+
+Mariah@SAMSUNG-LAP MINGW64 ~/.ssh
+$ ssh-add id_ed25519
+Enter passphrase for id_ed25519:
+Identity added: id_ed25519 (ricardofurtadof1@gmail.com)
+
+
+$ ls
+git_github_anotacoes.txt
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO
+$ pwd
+/c/Users/Mariah/Desktop/DIO
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO
+$ mkdir livro-receitas
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO
+$ cd livro-receitas/
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas
+$ git init
+Initialized empty Git repository in C:/Users/Mariah/Desktop/DIO/livro-receitas/.git/
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ ls
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ ls -a
+./  ../  .git/
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ cd .git
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas/.git (GIT_DIR!)
+$ ls
+HEAD  config  description  hooks/  info/  objects/  refs/
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas/.git (GIT_DIR!)
+$ cd ..
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git config --global user.email "ricardofurtadof1@gmail.com"
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git config --global user.name ricardofurtadof1
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ ls
+strogonof.md
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git add *
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git commit -m "commit inicial"
+[master (root-commit) 0dcbb26] commit inicial
+ 1 file changed, 4 insertions(+)
+ create mode 100644 strogonof.md
+
+$ ls
+strogonof.md
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ mkdir receitas
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ ls
+receitas/  strogonof.md
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ mv strogonof.md ./receitas/
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ ls
+receitas/
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ cd receitas/
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas/receitas (master)
+$ ls
+strogonof.md
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas/receitas (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        deleted:    ../strogonof.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        ./
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas/receitas (master)
+$ git add strogonof.md receitas/
+fatal: pathspec 'receitas/' did not match any files
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas/receitas (master)
+$ cd ..
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git add strogonof.md receitas/
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        renamed:    strogonof.md -> receitas/strogonof.md
+
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git commit -m "cria pasta receitas"
+[master 192b7a1] cria pasta receitas
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename strogonof.md => receitas/strogonof.md (100%)
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+$ ls
+receitas/
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ echo > README.md
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ ls
+README.md  receitas/
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        README.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        README.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git add *
+warning: LF will be replaced by CRLF in README.md.
+The file will have its original line endings in your working directory
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   README.md
+
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git commit -m "adiciona index"
+[master 1c606fc] adiciona index
+ 1 file changed, 5 insertions(+)
+ create mode 100644 README.md
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git remote add origin https://github.com/ricardofurtadof1/livro-receitas.git
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git remote -v
+origin  https://github.com/ricardofurtadof1/livro-receitas.git (fetch)
+origin  https://github.com/ricardofurtadof1/livro-receitas.git (push)
+
+Mariah@SAMSUNG-LAP MINGW64 ~/Desktop/DIO/livro-receitas (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+
+
+
+
+
+TOKENS DE ACESSO PESSOAL
+no site do git hub gerar e guardar
